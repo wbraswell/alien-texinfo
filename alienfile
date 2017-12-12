@@ -1,6 +1,6 @@
 use alienfile;
 
-#our $VERSION = 0.001_000;
+#our $VERSION = 0.002_000;
  
 plugin 'PkgConfig' => (
     pkg_name =>'libtexinfo',
@@ -16,9 +16,8 @@ share {
     plugin Extract => 'tar.gz';
     plugin 'Build::Autoconf' => ();
     build [
-        '%{configure}',
+        '%{configure} --disable-perl-xs',  # fix segfault on Perl v5.8
         '%{gmake}',
-        '%{gmake} test',
         '%{gmake} install',
     ];
 };
