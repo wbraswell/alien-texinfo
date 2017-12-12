@@ -47,7 +47,7 @@ script:
     - make
     - make test
     - make install
-    - perl -e 'use Alien::Texinfo; use Env qw(@PATH); unshift @PATH, Alien::Texinfo->bin_dir(); print `texinfo --version`, "\n";'
+    - perl -e 'use Alien::Texinfo; use Env qw(@PATH); unshift @PATH, Alien::Texinfo->bin_dir(); print `makeinfo --version`, "\n";'
 
 notifications:
   irc:
