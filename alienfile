@@ -1,0 +1,24 @@
+use alienfile;
+
+#our $VERSION = 0.001_000;
+ 
+plugin 'PkgConfig' => (
+    pkg_name =>'libtexinfo',
+    minimum_version => '6.5',
+);
+ 
+share {
+    plugin Download => (
+        url => 'https://wbraswell.github.io/texinfo-mirror/',  # GitHub mirror server
+        filter => qr/^texinfo-.*\.tar\.gz$/,
+        version => qr/^texinfo-([0-9\.]+)/,
+    );
+    plugin Extract => 'tar.gz';
+    plugin 'Build::Autoconf' => ();
+    build [
+        '%{configure}',
+        '%{gmake}',
+        '%{gmake} test',
+        '%{gmake} install',
+    ];
+};

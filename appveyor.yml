@@ -1,0 +1,45 @@
+# v0.033_000
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: false
+skip_tags: true
+clone_depth: 1
+clone_folder: C:\projects\alien-texinfo
+
+#environment:
+#    matrix:
+# DEV NOTE, CORRELATION #ap011: hackish code, setting ALIEN_INSTALL_TYPE=share causes Alien::gmake to fail to properly install in system mode with pre-installed C:\strawberry\c\bin\gmake.exe
+        # share test, compile Texinfo from source
+#        - ALIEN_INSTALL_TYPE: share
+
+# NEED FIX, CORRELATION #ap010: chocolatey does not support installation of libtexinfo*
+       # system test, uses Texinfo from chocolatey
+#        - ALIEN_INSTALL_TYPE: system
+
+# DEV NOTE: Windows OS, force manual install w/out test of IO::Socket::SSL, about 50% of the time it hangs on the test after "t/sysread_write.t ................. ok"
+install:
+- cmd: >-
+
+    choco install curl
+
+    curl -o perl.msi http://strawberryperl.com/download/5.26.0.1/strawberry-perl-5.26.0.1-32bit.msi
+
+    msiexec /i perl.msi /quiet /qn /norestart
+
+    set PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;C:\windows\system32;C:\windows;%path%
+
+    cpanm --verbose --notest IO::Socket::SSL
+
+    cpanm --verbose --installdeps .
+
+    perl Makefile.PL
+
+    gmake test
+
+    gmake install
+
+    perl -le "use Alien::Texinfo; use Env qw(@PATH); unshift @PATH, Alien::Texinfo->bin_dir(); print `sh makeinfo --version`, \"\n\";"
+
+build: off
+test: off
+deploy: off
