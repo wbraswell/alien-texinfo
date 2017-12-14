@@ -1,4 +1,4 @@
-# v0.034_000
+# v0.003_000
 version: 1.0.{build}
 pull_requests:
   do_not_increment_build_number: false
@@ -42,7 +42,7 @@ install:
 
     gmake install
 
-    perl -le "use Alien::Texinfo; use Env qw(@PATH); unshift @PATH, Alien::Texinfo->bin_dir(); print `sh makeinfo --version`, \"\n\";"
+    perl -le "use Alien::Texinfo; use Env qw(@PATH); unshift @PATH, Alien::Texinfo->bin_dir(); print `sh which makeinfo; sh makeinfo --version`, \"\n\";"
 
 build: off
 test: off

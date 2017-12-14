@@ -1,5 +1,5 @@
 language: perl
-# v0.002_000
+# v0.003_000
 
 # NEED FIX, CORRELATION #ap010: old version of Travis build OS does not support apt-get installation of libtexinfo* ???
 #addons:
@@ -47,7 +47,7 @@ script:
     - make
     - make test
     - make install
-    - perl -e 'use Alien::Texinfo; use Env qw(@PATH); unshift @PATH, Alien::Texinfo->bin_dir(); print `makeinfo --version`, "\n";'
+    - perl -e 'use Alien::Texinfo; use Env qw(@PATH); unshift @PATH, Alien::Texinfo->bin_dir(); print `which makeinfo`, `makeinfo --version`, "\n";'
 
 notifications:
   irc:
