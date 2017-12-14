@@ -29,18 +29,7 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Alien::Build::MM" : "0.25",
-            "Alien::gmake" : "0.11",
-            "Archive::Tar" : "0",
-            "Config" : "0",
-            "HTML::LinkExtor" : "0",
-            "HTTP::Tiny" : "0.044",
-            "IO::Socket::SSL" : "1.56",
-            "IO::Zlib" : "0",
-            "Net::SSLeay" : "1.49",
-            "Sort::Versions" : "0",
-            "URI" : "0",
-            "URI::Escape" : "0"
+            "Alien::Build::MM" : "0.25"
          }
       },
       "configure" : {

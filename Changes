@@ -1,5 +1,9 @@
 Revision history for Alien::Texinfo.
 
+0.002000 2017-12-14
+
+    - Replace PkgConfig Plugin w/ CommandLine Plugin
+
 0.001000 2017-12-12
 
     - Initial Release!
