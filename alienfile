@@ -1,12 +1,12 @@
 use alienfile;
 
-#our $VERSION = 0.003_000;
+#our $VERSION = 0.004_000;
 
 plugin 'Probe::CommandLine' => (
     command => 'makeinfo',
     args    => ['--version'],
-    match   => qr/texi2any \(GNU texinfo\)/,
-    version => qr/^texi2any \(GNU texinfo\) ([0-9\.]+)$/,  # EXAMPLE: texi2any (GNU texinfo) 6.1
+    match   => qr/texi2any\ \(GNU\ texinfo\)/,
+    version => qr/^texi2any\ \(GNU\ texinfo\)\ ([0-9\.]+)$/,  # EXAMPLE: texi2any (GNU texinfo) 6.1
 );
  
 share {
