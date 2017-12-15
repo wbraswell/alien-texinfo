@@ -1,5 +1,11 @@
 Revision history for Alien::Texinfo.
 
+0.004000 2017-12-15
+
+    - Allow Minimum Version 5
+    - Allow Any Version Name Reporting
+        makeinfo, texi2any, etc.
+
 0.003000 2017-12-15
 
     - Test Suite, Command-Line Version Tests
