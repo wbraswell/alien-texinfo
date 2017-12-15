@@ -5,8 +5,10 @@ use alienfile;
 plugin 'Probe::CommandLine' => (
     command => 'makeinfo',
     args    => ['--version'],
-    match   => qr/texi2any\ \(GNU\ texinfo\)/,
-    version => qr/^texi2any\ \(GNU\ texinfo\)\ ([0-9\.]+)$/,  # EXAMPLE: texi2any (GNU texinfo) 6.1
+    # EXAMPLE: texi2any (GNU texinfo) 6.1
+    # EXAMPLE: makeinfo (GNU texinfo) 5.2
+    match   => qr/\(GNU\ texinfo\)/,
+    version => qr/^\w+\ \(GNU\ texinfo\)\ ([0-9\.]+)$/,
 );
  
 share {

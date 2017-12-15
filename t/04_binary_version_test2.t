@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-our $VERSION = 0.001_000;
+our $VERSION = 0.002_000;
 
 use Test2::V0;
 use Test::Alien;
@@ -8,7 +8,7 @@ use Alien::Texinfo;
 use English qw(-no_match_vars);  # for $OSNAME
 use Data::Dumper;  # DEBUG
 
-plan(7);
+plan(6);
 
 # load alien
 alien_ok('Alien::Texinfo', 'Alien::Texinfo loads successfully and conforms to Alien::Base specifications');
@@ -20,9 +20,9 @@ my $run_object = run_ok([ 'makeinfo', '--version' ], 'Command `makeinfo --versio
 $run_object->success('Command `makeinfo --version` runs successfully');
 
 # EXAMPLE: texi2any (GNU texinfo) 6.1
-is((substr $run_object->out(), 0, 23), 'texi2any (GNU texinfo) ', 'Command `makeinfo --version` output starts correctly');
+# EXAMPLE: makeinfo (GNU texinfo) 5.2
 # DEV NOTE: can't use out_like() on the next line because it does not properly capture to $1, as used in the following split
-ok($run_object->out() =~ m/^texi2any\ \(GNU\ texinfo\)\ ([0-9\.]+)$/xms, 'Command `makeinfo --version` runs with valid output');
+ok($run_object->out() =~ m/^\w+\ \(GNU\ texinfo\)\ ([0-9\.]+)$/xms, 'Command `makeinfo --version` runs with valid output');
 
 # test actual version numbers
 my $version_split = [split /[.]/, $1];

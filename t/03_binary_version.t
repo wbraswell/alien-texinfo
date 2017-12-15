@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-our $VERSION = 0.001_000;
+our $VERSION = 0.002_000;
 
 use Test::More tests => 6;
 use File::Spec;
@@ -28,9 +28,10 @@ my $version = [ split /\r?\n/, capture_merged { system "$makeinfo_path --version
 cmp_ok((scalar @{$version}), '>=', 1, '`makeinfo --version` executes with at least 1 line of output');
 
 # EXAMPLE: texi2any (GNU texinfo) 6.1
+# EXAMPLE: makeinfo (GNU texinfo) 5.2
 my $version_0 = $version->[0];
 #print {*STDERR} 'in 03_binary_version.t, have $version_0 = ', "\n", '[[[', $version_0, ']]]', "\n";
-ok($version_0 =~ m/^texi2any\ \(GNU\ texinfo\)\ ([0-9\.]+)$/xms, '`makeinfo --version` 1 line of output is correct');
+ok($version_0 =~ m/^\w+\ \(GNU\ texinfo\)\ ([0-9\.]+)$/xms, '`makeinfo --version` 1 line of output is correct');
 
 my $version_split = [split /[.]/, $1];
 my $version_split_0 = $version_split->[0] + 0;
