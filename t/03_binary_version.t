@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-our $VERSION = 0.002_000;
+our $VERSION = 0.003_000;
 
 use Test::More tests => 6;
 use File::Spec;
@@ -35,4 +35,4 @@ ok($version_0 =~ m/^\w+\ \(GNU\ texinfo\)\ ([0-9\.]+)$/xms, '`makeinfo --version
 
 my $version_split = [split /[.]/, $1];
 my $version_split_0 = $version_split->[0] + 0;
-cmp_ok($version_split_0, '>=', 6, '`makeinfo --version` returns major version 6 or newer');
+cmp_ok($version_split_0, '>=', 5, '`makeinfo --version` returns major version 5 or newer');
