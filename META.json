@@ -64,9 +64,9 @@
       "x_mailinglist" : "http://lists.gnu.org/mailman/listinfo/help-texinfo",
       "x_wiki" : "https://en.wikipedia.org/wiki/Texinfo"
    },
-   "version" : "0.001000",
+   "version" : "0.003000",
    "x_alienfile" : {
-      "generated_by" : "Alien::Build::MM version 1.28",
+      "generated_by" : "Alien::Build::MM version 1.32",
       "requires" : {
          "share" : {
             "Alien::gmake" : "0.11",
