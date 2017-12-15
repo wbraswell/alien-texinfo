@@ -1,12 +1,11 @@
 language: perl
 # v0.003_000
 
-# NEED FIX, CORRELATION #ap010: old version of Travis build OS does not support apt-get installation of libtexinfo* ???
+# DEV NOTE: prefer system-install-only Perl one-liner solution to call `suto apt-get install texinfo` in "install" section below
 #addons:
 #    apt:
 #        packages:
-#            - libtexinfo
-#            - libtexinfo-dev
+#            - texinfo
 
 perl:
     - "5.8"
@@ -40,6 +39,7 @@ before_install:
 # [ END Travis-CI Helper ]
 
 install:
+    - perl -e 'if ($ENV{ALIEN_INSTALL_TYPE} eq q{system}) { system qw(sudo apt-get install texinfo); }'
     - cpanm --verbose --installdeps .
 
 script:
@@ -64,7 +64,6 @@ notifications:
 env:
     global:
         - AUTHOR_TESTING=0
-#    matrix:
-#        - ALIEN_INSTALL_TYPE=share
-# NEED FIX, CORRELATION #ap010: old version of Travis build OS does not support apt-get installation of libtexinfo* ???
-#        - ALIEN_INSTALL_TYPE=system
+    matrix:
+        - ALIEN_INSTALL_TYPE=share
+        - ALIEN_INSTALL_TYPE=system
