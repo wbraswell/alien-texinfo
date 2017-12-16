@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-our $VERSION = 0.003_000;
+our $VERSION = 0.004_000;
 
 use Test2::V0;
 use Test::Alien;
@@ -24,11 +24,13 @@ $run_object->success('Command `makeinfo --version` runs successfully');
 # DEV NOTE: can't use out_like() on the next line because it does not properly capture to $1, as used in the following split
 ok($run_object->out() =~ m/^\w+\ \(GNU\ texinfo\)\ ([0-9\.]+)$/xms, 'Command `makeinfo --version` runs with valid output');
 
+# DEV NOTE, CORRELATION #at000: require Texinfo v4.x or newer, as of 20171216 Candl uses Texinfo v4.11 & at least 10% of CPAN Testers has Texinfo v4.x
+
 # test actual version numbers
 my $version_split = [split /[.]/, $1];
 #print {*STDERR} "\n", q{<<< DEBUG >>> in t/04_binary_version_test2.t, have $version_split = }, Dumper($version_split), "\n";
 my $version_split_0 = $version_split->[0] + 0;
 #print {*STDERR} "\n", q{<<< DEBUG >>> in t/04_binary_version_test2.t, have $version_split_0 = '}, $version_split_0, q{'}, "\n";
-cmp_ok($version_split_0, '>=', 5, 'Command `makeinfo --version` returns major version 6 or newer');
+cmp_ok($version_split_0, '>=', 4, 'Command `makeinfo --version` returns major version 4 or newer');
 
 done_testing;

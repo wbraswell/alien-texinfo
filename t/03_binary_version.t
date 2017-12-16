@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-our $VERSION = 0.003_000;
+our $VERSION = 0.004_000;
 
 use Test::More tests => 6;
 use File::Spec;
@@ -33,6 +33,7 @@ my $version_0 = $version->[0];
 #print {*STDERR} 'in 03_binary_version.t, have $version_0 = ', "\n", '[[[', $version_0, ']]]', "\n";
 ok($version_0 =~ m/^\w+\ \(GNU\ texinfo\)\ ([0-9\.]+)$/xms, '`makeinfo --version` 1 line of output is correct');
 
+# DEV NOTE, CORRELATION #at000: require Texinfo v4.x or newer, as of 20171216 Candl uses Texinfo v4.11 & at least 10% of CPAN Testers has Texinfo v4.x
 my $version_split = [split /[.]/, $1];
 my $version_split_0 = $version_split->[0] + 0;
-cmp_ok($version_split_0, '>=', 5, '`makeinfo --version` returns major version 5 or newer');
+cmp_ok($version_split_0, '>=', 4, '`makeinfo --version` returns major version 4 or newer');
