@@ -64,7 +64,7 @@
       "x_mailinglist" : "http://lists.gnu.org/mailman/listinfo/help-texinfo",
       "x_wiki" : "https://en.wikipedia.org/wiki/Texinfo"
    },
-   "version" : "0.003000",
+   "version" : "0.005000",
    "x_alienfile" : {
       "generated_by" : "Alien::Build::MM version 1.32",
       "requires" : {
